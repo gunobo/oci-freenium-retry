@@ -2,7 +2,7 @@ name: OCI Always Free Auto-Retry
 
 on:
   schedule:
-    - cron: "*/20 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 concurrency:
@@ -54,17 +54,3 @@ jobs:
           OCI_ARCH: ${{ vars.OCI_ARCH }}
           OCI_BOOT_VOLUME_SIZE_GB: ${{ vars.OCI_BOOT_VOLUME_SIZE_GB }}
         run: python scripts/launch.py
-
-      - name: Commit state.json (if changed)
-        continue-on-error: true
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f state.json
-          if git diff --cached --quiet; then
-            echo "state.json に変更はないため commit をスキップします。"
-          else
-            git commit -m "chore(state): update state.json"
-            git pull --rebase origin main
-            git push
-          fi
