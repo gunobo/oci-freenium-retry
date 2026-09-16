@@ -12,10 +12,6 @@ concurrency:
 permissions:
   contents: write
 
-concurrency:
-  group: oci-retry
-  cancel-in-progress: false
-
 jobs:
   launch:
     runs-on: ubuntu-latest
