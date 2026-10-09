@@ -4,4 +4,7 @@ __pycache__/
 .venv/
 .env
 *.pem
-_TASK.md
+_TASK.mdoci_config
+mac_ssh.pub
+ko.py
+backoff.py
